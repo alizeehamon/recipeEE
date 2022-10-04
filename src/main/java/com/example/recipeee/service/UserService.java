@@ -17,4 +17,23 @@ public class UserService {
     public long create(User user){
        return userDAO.create(user);
     }
+
+    public User getUserById(long idParam){
+        Optional<User> userOptional = userDAO.findById(idParam);
+        return userOptional.orElse(null);
+    }
+
+    public boolean edit(User userDTO){
+        Optional <User> userOptional = userDAO.findById(userDTO.getId());
+        if(userOptional.isPresent()){
+            User user = userOptional.get();
+            user.setFirstName(userDTO.getFirstName());
+            user.setLastName(userDTO.getLastName());
+            user.setPictureUrl(userDTO.getPictureUrl());
+            user.setEmail(userDTO.getEmail());
+            user.setPassword(userDTO.getPassword());
+            return userDAO.edit(user);
+        }
+        return false;
+    }
 }

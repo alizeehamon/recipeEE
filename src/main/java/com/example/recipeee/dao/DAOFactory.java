@@ -4,10 +4,15 @@ import com.example.recipeee.dao.jpa.JpaUserDAO;
 
 public final class DAOFactory {
 
+    private static JpaUserDAO jpaUserDAO;
+
     private DAOFactory() {
     }
 
     public static UserDAO getUserDAO() {
-        return new JpaUserDAO();
+        if (jpaUserDAO == null) {
+            jpaUserDAO = new JpaUserDAO();
+        }
+        return jpaUserDAO;
     }
 }

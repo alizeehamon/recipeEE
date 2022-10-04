@@ -38,7 +38,18 @@ public class JpaUserDAO implements UserDAO {
 
     @Override
     public Optional<User> findById(long idParam) {
-        return Optional.empty();
+        User user = null;
+        EntityManager em = emf.createEntityManager();
+
+        try{
+            user = em.find(User.class, idParam);
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }finally {
+            em.close();
+        }
+        return Optional.ofNullable(user);
     }
 
     @Override
@@ -48,6 +59,21 @@ public class JpaUserDAO implements UserDAO {
 
     @Override
     public boolean edit(User userToEdit) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try{
+            et.begin();
+            em.merge(userToEdit);
+            et.commit();
+            return true;
+
+        }catch(Exception e){
+            if(et.isActive()){
+                et.rollback();
+            }
+        } finally {
+            em.close();
+        }
         return false;
     }
 }
