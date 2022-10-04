@@ -3,15 +3,16 @@ package com.example.recipeee.dao.entity;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Step {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private long id;
     @Basic
-    @Column(name = "description")
+    @Column(name = "description", nullable = true, length = 255)
     private String description;
     @OneToMany(mappedBy = "stepByIdStep")
     private Collection<Recipe> recipesById;
@@ -36,20 +37,13 @@ public class Step {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Step step = (Step) o;
-
-        if (id != step.id) return false;
-        if (description != null ? !description.equals(step.description) : step.description != null) return false;
-
-        return true;
+        return id == step.id && Objects.equals(description, step.description);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        return result;
+        return Objects.hash(id, description);
     }
 
     public Collection<Recipe> getRecipesById() {
