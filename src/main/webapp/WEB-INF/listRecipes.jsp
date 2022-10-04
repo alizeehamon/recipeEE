@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <title>Recipe EE | List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -21,7 +22,18 @@
                 </div>
             </div>
         </c:forEach>
-    </div>
+
+    <form action="${pageContext.request.contextPath}/recipes-list" method="POST">
+    <label for="site-search">Search recipes by name:</label>
+    <input type="searchName" id="site-search" name="searchName">
+
+    <label for="mealType-select">Choose a type of meal:</label>
+    <select name="mealType" id="mealType-select">
+        <option value="">--Please choose a meal type--</option>
+        <c:forEach items="${mealTypes}" var="mealType"><option value="${mealType.id}">${mealType.name}</option></c:forEach>
+    </select>
+    <button>Search</button>
+    </form>
 </div>
 <script src="https://kit.fontawesome.com/a2dedf79e7.js" crossorigin="anonymous"></script>
 </body>
