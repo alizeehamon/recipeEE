@@ -7,7 +7,7 @@
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-
+<jsp:include page="header.jsp"/>
 <div class="container">
 
     <h1>Edit your account</h1>
