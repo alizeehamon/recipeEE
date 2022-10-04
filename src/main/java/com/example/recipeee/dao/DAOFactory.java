@@ -1,13 +1,17 @@
 package com.example.recipeee.dao;
 
-import com.example.recipeee.dao.jpa.recipe.DAORecipe;
-import com.example.recipeee.dao.jpa.recipe.JPARecipeDAO;
+import com.example.recipeee.dao.jpa.JpaUserDAO;
+import com.example.recipeee.dao.jpa.recipe.RecipeDAO;
+import com.example.recipeee.dao.jpa.recipe.JpaRecipeDAO;
 
 public class DAOFactory {
 
     private DAOFactory(){};
 
-    public static DAORecipe getRecipeDAO(){
-        return new JPARecipeDAO();
+    public static RecipeDAO getRecipeDAO() {
+        return new JpaRecipeDAO();
+    }
+    public static UserDAO getUserDAO() {
+        return new JpaUserDAO();
     }
 }

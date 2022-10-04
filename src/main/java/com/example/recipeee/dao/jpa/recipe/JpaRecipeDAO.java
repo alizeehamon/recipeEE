@@ -8,7 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JPARecipeDAO implements DAORecipe{
+public class JpaRecipeDAO implements RecipeDAO {
     @Override
     public List<Recipe> findAll() {
         List<Recipe> recipes = new ArrayList<>();

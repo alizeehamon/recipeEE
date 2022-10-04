@@ -4,7 +4,7 @@ import com.example.recipeee.dao.entity.Recipe;
 
 import java.util.List;
 
-public interface DAORecipe {
+public interface RecipeDAO {
 
     public List<Recipe> findAll();
 }

@@ -29,6 +29,18 @@ public class User {
     @OneToMany(mappedBy = "userByIdUser")
     private Collection<RecipeUser> recipeUsersById;
 
+    public User(String firstName, String lastName, String pictureUrl, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pictureUrl = pictureUrl;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User() {
+
+    }
+
     public long getId() {
         return id;
     }
