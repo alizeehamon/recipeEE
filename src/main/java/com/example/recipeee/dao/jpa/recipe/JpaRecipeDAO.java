@@ -94,7 +94,11 @@ public class JpaRecipeDAO implements RecipeDAO {
         EntityManager em = emf.createEntityManager();
         try {
             recipe = em.find(Recipe.class, idParam);
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
         return Optional.ofNullable(recipe);
     }
 }
