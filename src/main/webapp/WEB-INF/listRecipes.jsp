@@ -17,6 +17,7 @@
             <h5 class="card-title">${recipe.name}</h5>
             <p class="card-text"></p>
             <a href="#" class="btn btn-primary">${recipe.expanse}</a>
+            <a href="${pageContext.request.contextPath}/recipe-details?id=${recipe.id}">Afficher la recette</a>
         </div>
     </div>
     </c:forEach>
