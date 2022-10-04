@@ -9,6 +9,7 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JpaRecipeDAO implements RecipeDAO {
     @Override
@@ -78,11 +79,22 @@ public class JpaRecipeDAO implements RecipeDAO {
             recipes = query
                     .setParameter("typeId", typeId)
                     .getResultList();
-        } catch (Exception e) {
+             } catch (Exception e) {
             e.printStackTrace();
         } finally {
             em.close();
         }
         return recipes;
+    }
+
+    @Override
+    public Optional<Recipe> findById(long idParam) {
+        Recipe recipe = null;
+        EntityManagerFactory emf = EMFManager.getEMF();
+        EntityManager em = emf.createEntityManager();
+        try {
+            recipe = em.find(Recipe.class, idParam);
+
+        return Optional.ofNullable(recipe);
     }
 }

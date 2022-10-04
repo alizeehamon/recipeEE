@@ -3,6 +3,7 @@ package com.example.recipeee.dao.jpa.recipe;
 import com.example.recipeee.dao.entity.Recipe;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RecipeDAO {
 
@@ -13,4 +14,6 @@ public interface RecipeDAO {
     List<Recipe> findByName(String name);
 
     List<Recipe> findByType(Long typeId);
+
+    Optional<Recipe> findById(long idParam);
 }
