@@ -1,4 +1,4 @@
 package com.example.recipeee.dao;
 
-public interface DAO {
+public interface DAO<E> {
 }
