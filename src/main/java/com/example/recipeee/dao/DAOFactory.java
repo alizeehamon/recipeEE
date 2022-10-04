@@ -6,12 +6,18 @@ import com.example.recipeee.dao.jpa.recipe.JpaRecipeDAO;
 
 public class DAOFactory {
 
-    private DAOFactory(){};
+    private static JpaUserDAO jpaUserDAO;
+
+    private DAOFactory() {
+    }
 
     public static RecipeDAO getRecipeDAO() {
         return new JpaRecipeDAO();
     }
     public static UserDAO getUserDAO() {
-        return new JpaUserDAO();
+        if (jpaUserDAO == null) {
+            jpaUserDAO = new JpaUserDAO();
+        }
+        return jpaUserDAO;
     }
 }
