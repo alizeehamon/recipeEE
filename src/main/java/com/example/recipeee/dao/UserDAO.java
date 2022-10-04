@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserDAO {
-    List<User> findAll();
+    List findAll();
 
     long create(User user);
 

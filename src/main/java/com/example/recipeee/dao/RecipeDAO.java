@@ -1,4 +1,4 @@
-package com.example.recipeee.dao.jpa.recipe;
+package com.example.recipeee.dao;
 
 import com.example.recipeee.dao.entity.Recipe;
 
@@ -16,4 +16,6 @@ public interface RecipeDAO {
     List<Recipe> findByType(Long typeId);
 
     Optional<Recipe> findById(long idParam);
+
+    public boolean create(Recipe recipe);
 }

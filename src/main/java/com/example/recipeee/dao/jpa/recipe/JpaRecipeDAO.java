@@ -2,6 +2,7 @@ package com.example.recipeee.dao.jpa.recipe;
 
 import com.example.recipeee.dao.jpa.EMFManager;
 import com.example.recipeee.dao.entity.Recipe;
+import com.example.recipeee.dao.RecipeDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -79,7 +80,7 @@ public class JpaRecipeDAO implements RecipeDAO {
             recipes = query
                     .setParameter("typeId", typeId)
                     .getResultList();
-             } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             em.close();
@@ -101,4 +102,25 @@ public class JpaRecipeDAO implements RecipeDAO {
         }
         return Optional.ofNullable(recipe);
     }
+
+    @Override
+    public boolean create(Recipe recipe) {
+        EntityManagerFactory emf = EMFManager.getEMF();
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.persist(recipe);
+            transaction.commit();
+            return true;
+        } catch (Exception e){
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+        }finally {
+            em.close();
+        }
+        return false;
+    }
+
 }

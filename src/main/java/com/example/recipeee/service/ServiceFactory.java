@@ -1,5 +1,6 @@
 package com.example.recipeee.service;
 
+import com.example.recipeee.service.recipe.RecipeService;
 import com.example.recipeee.service.typemeal.TypeMealService;
 import com.example.recipeee.service.user.UserService;
 

@@ -46,6 +46,20 @@ public class Recipe {
     @OneToMany(mappedBy = "recipeByIdRecipe")
     private Collection<RecipeUser> recipeUsersById;
 
+    public Recipe() {
+    }
+
+    public Recipe(String name, Integer difficulty, String pictureUrl, Integer cookTime, Integer preparation, Integer restTime, Integer expanse, String cookType) {
+        this.name = name;
+        this.difficulty = difficulty;
+        this.pictureUrl = pictureUrl;
+        this.cookTime = cookTime;
+        this.preparation = preparation;
+        this.restTime = restTime;
+        this.expanse = expanse;
+        this.cookType = cookType;
+    }
+
     public long getId() {
         return id;
     }

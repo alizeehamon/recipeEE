@@ -3,7 +3,7 @@ package com.example.recipeee.servlet;
 import com.example.recipeee.dao.DAOFactory;
 import com.example.recipeee.dao.entity.Recipe;
 import com.example.recipeee.dao.entity.TypeMeal;
-import com.example.recipeee.service.RecipeService;
+import com.example.recipeee.service.recipe.RecipeService;
 import com.example.recipeee.service.ServiceFactory;
 import com.example.recipeee.service.typemeal.TypeMealService;
 import jakarta.servlet.*;

@@ -1,10 +1,8 @@
-package com.example.recipeee.service;
+package com.example.recipeee.service.recipe;
 
 import com.example.recipeee.dao.DAOFactory;
 import com.example.recipeee.dao.entity.Recipe;
-import com.example.recipeee.dao.jpa.mealtype.JpaMealTypeDAO;
-import com.example.recipeee.dao.jpa.recipe.JpaRecipeDAO;
-import com.example.recipeee.dao.jpa.recipe.RecipeDAO;
+import com.example.recipeee.dao.RecipeDAO;
 
 import java.util.List;
 
@@ -27,4 +25,5 @@ public class RecipeService {
             return recipeDAO.findAll();
         }
     }
+
 }

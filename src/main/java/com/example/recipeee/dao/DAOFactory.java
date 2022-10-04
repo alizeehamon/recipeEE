@@ -2,10 +2,9 @@ package com.example.recipeee.dao;
 
 import com.example.recipeee.dao.jpa.JpaUserDAO;
 import com.example.recipeee.dao.jpa.mealtype.JpaMealTypeDAO;
-import com.example.recipeee.dao.jpa.recipe.RecipeDAO;
 import com.example.recipeee.dao.jpa.recipe.JpaRecipeDAO;
 
-public class DAOFactory {
+public final class DAOFactory {
 
     private static JpaUserDAO jpaUserDAO;
     private static JpaMealTypeDAO jpaMealTypeDAO;
