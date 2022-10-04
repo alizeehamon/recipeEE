@@ -2,15 +2,17 @@ package com.example.recipeee.dao.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
-@Table(name = "ingredient_recipe", schema = "recipeee")
+@Table(name = "ingredient_recipe", schema = "recipee", catalog = "")
 public class IngredientRecipe {
     @Basic
-    @Column(name = "qty_ingredient")
+    @Column(name = "qty_ingredient", nullable = false)
     private int qtyIngredient;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private long id;
     @ManyToOne
     @JoinColumn(name = "id_recipe", referencedColumnName = "id", nullable = false)
@@ -39,20 +41,13 @@ public class IngredientRecipe {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         IngredientRecipe that = (IngredientRecipe) o;
-
-        if (qtyIngredient != that.qtyIngredient) return false;
-        if (id != that.id) return false;
-
-        return true;
+        return qtyIngredient == that.qtyIngredient && id == that.id;
     }
 
     @Override
     public int hashCode() {
-        int result = qtyIngredient;
-        result = 31 * result + (int) (id ^ (id >>> 32));
-        return result;
+        return Objects.hash(qtyIngredient, id);
     }
 
     public Recipe getRecipeByIdRecipe() {

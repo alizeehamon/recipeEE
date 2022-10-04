@@ -1,3 +1,4 @@
+
 package com.example.recipeee.dao.jpa;
 
 import jakarta.persistence.EntityManagerFactory;
@@ -16,7 +17,6 @@ public final class EMFManager {
         }
         return EMF;
     }
-
     public static void close() {
         if (EMF != null && EMF.isOpen()) {
             EMF.close();
