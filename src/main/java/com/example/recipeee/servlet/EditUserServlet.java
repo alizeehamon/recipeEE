@@ -2,7 +2,7 @@ package com.example.recipeee.servlet;
 
 import com.example.recipeee.dao.entity.User;
 import com.example.recipeee.service.ServiceFactory;
-import com.example.recipeee.service.UserService;
+import com.example.recipeee.service.user.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

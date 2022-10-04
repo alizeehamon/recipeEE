@@ -1,4 +1,4 @@
-package com.example.recipeee.service;
+package com.example.recipeee.service.user;
 
 import com.example.recipeee.dao.DAOFactory;
 import com.example.recipeee.dao.UserDAO;
