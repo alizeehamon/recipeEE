@@ -3,16 +3,17 @@ package com.example.recipeee.dao.entity;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
-@Table(name = "recipe_user", schema = "recipeee", catalog = "")
+@Table(name = "recipe_user", schema = "recipee", catalog = "")
 public class RecipeUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private long id;
     @Basic
-    @Column(name = "cook_date")
+    @Column(name = "cook_date", nullable = false)
     private Date cookDate;
     @ManyToOne
     @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false)
@@ -41,20 +42,13 @@ public class RecipeUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         RecipeUser that = (RecipeUser) o;
-
-        if (id != that.id) return false;
-        if (cookDate != null ? !cookDate.equals(that.cookDate) : that.cookDate != null) return false;
-
-        return true;
+        return id == that.id && Objects.equals(cookDate, that.cookDate);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (cookDate != null ? cookDate.hashCode() : 0);
-        return result;
+        return Objects.hash(id, cookDate);
     }
 
     public User getUserByIdUser() {

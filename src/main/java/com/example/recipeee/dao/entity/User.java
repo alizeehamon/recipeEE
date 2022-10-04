@@ -3,30 +3,43 @@ package com.example.recipeee.dao.entity;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private long id;
     @Basic
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = true, length = 255)
     private String firstName;
     @Basic
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = true, length = 255)
     private String lastName;
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = true, length = 255)
     private String email;
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = true, length = 255)
     private String password;
     @Basic
-    @Column(name = "picture_url")
+    @Column(name = "picture_url", nullable = true, length = 255)
     private String pictureUrl;
     @OneToMany(mappedBy = "userByIdUser")
     private Collection<RecipeUser> recipeUsersById;
+
+    public User(String firstName, String lastName, String pictureUrl, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pictureUrl = pictureUrl;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User() {
+
+    }
 
     public long getId() {
         return id;
@@ -80,28 +93,13 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (id != user.id) return false;
-        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (pictureUrl != null ? !pictureUrl.equals(user.pictureUrl) : user.pictureUrl != null) return false;
-
-        return true;
+        return id == user.id && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(pictureUrl, user.pictureUrl);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (pictureUrl != null ? pictureUrl.hashCode() : 0);
-        return result;
+        return Objects.hash(id, firstName, lastName, email, password, pictureUrl);
     }
 
     public Collection<RecipeUser> getRecipeUsersById() {

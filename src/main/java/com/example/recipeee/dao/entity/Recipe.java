@@ -3,36 +3,37 @@ package com.example.recipeee.dao.entity;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private long id;
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = true, length = 255)
     private String name;
     @Basic
-    @Column(name = "difficulty")
+    @Column(name = "difficulty", nullable = true)
     private Integer difficulty;
     @Basic
-    @Column(name = "pictureUrl")
+    @Column(name = "pictureUrl", nullable = true, length = 255)
     private String pictureUrl;
     @Basic
-    @Column(name = "cook_time")
+    @Column(name = "cook_time", nullable = true)
     private Integer cookTime;
     @Basic
-    @Column(name = "preparation")
+    @Column(name = "preparation", nullable = true)
     private Integer preparation;
     @Basic
-    @Column(name = "rest_time")
+    @Column(name = "rest_time", nullable = true)
     private Integer restTime;
     @Basic
-    @Column(name = "expanse")
+    @Column(name = "expanse", nullable = true)
     private Integer expanse;
     @Basic
-    @Column(name = "cook_type")
+    @Column(name = "cook_type", nullable = true, length = 255)
     private String cookType;
     @OneToMany(mappedBy = "recipeByIdRecipe")
     private Collection<IngredientRecipe> ingredientRecipesById;
@@ -121,34 +122,13 @@ public class Recipe {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Recipe recipe = (Recipe) o;
-
-        if (id != recipe.id) return false;
-        if (name != null ? !name.equals(recipe.name) : recipe.name != null) return false;
-        if (difficulty != null ? !difficulty.equals(recipe.difficulty) : recipe.difficulty != null) return false;
-        if (pictureUrl != null ? !pictureUrl.equals(recipe.pictureUrl) : recipe.pictureUrl != null) return false;
-        if (cookTime != null ? !cookTime.equals(recipe.cookTime) : recipe.cookTime != null) return false;
-        if (preparation != null ? !preparation.equals(recipe.preparation) : recipe.preparation != null) return false;
-        if (restTime != null ? !restTime.equals(recipe.restTime) : recipe.restTime != null) return false;
-        if (expanse != null ? !expanse.equals(recipe.expanse) : recipe.expanse != null) return false;
-        if (cookType != null ? !cookType.equals(recipe.cookType) : recipe.cookType != null) return false;
-
-        return true;
+        return id == recipe.id && Objects.equals(name, recipe.name) && Objects.equals(difficulty, recipe.difficulty) && Objects.equals(pictureUrl, recipe.pictureUrl) && Objects.equals(cookTime, recipe.cookTime) && Objects.equals(preparation, recipe.preparation) && Objects.equals(restTime, recipe.restTime) && Objects.equals(expanse, recipe.expanse) && Objects.equals(cookType, recipe.cookType);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (difficulty != null ? difficulty.hashCode() : 0);
-        result = 31 * result + (pictureUrl != null ? pictureUrl.hashCode() : 0);
-        result = 31 * result + (cookTime != null ? cookTime.hashCode() : 0);
-        result = 31 * result + (preparation != null ? preparation.hashCode() : 0);
-        result = 31 * result + (restTime != null ? restTime.hashCode() : 0);
-        result = 31 * result + (expanse != null ? expanse.hashCode() : 0);
-        result = 31 * result + (cookType != null ? cookType.hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, difficulty, pictureUrl, cookTime, preparation, restTime, expanse, cookType);
     }
 
     public Collection<IngredientRecipe> getIngredientRecipesById() {
