@@ -17,7 +17,7 @@
 
                 <!-- peut etre a revoir /  comment on passe l'id probablement stocker l'utilisateur dans la session -->
                 <!-- search bar possiblement ajoutable dans le <if> ci-dessous -->
-                <c:if test="${not empty sessionScope.user}">
+                <c:if test="${not empty sessionScope.email && not empty sessionScope.password}">
                     <!-- randomise recipe -->
                     <li class="nav-item active">
                         <a class="nav-link text-white" href="#">Get a random recipe</a>
@@ -25,15 +25,15 @@
 
                     <li class="nav-item">
                         <a class="nav-link text-white"
-                           href="${pageContext.request.contextPath}/edit-user?id=${user.id}">My profile</a>
+                           href="${pageContext.request.contextPath}/auth/edit-user?id=${sessionScope.id}">My profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/auth/logout">Logout</a>
+                        <a class="nav-link text-white" href="${pageContext.request.contextPath}/auth/logout">Logout</a>
                     </li>
                 </c:if>
 
                 <!-- Bloc login / Sign in-->
-                <c:if test="${empty sessionScope.username}">
+                <c:if test="${empty sessionScope.email && empty sessionScope.password}">
                     <li class="nav-item">
                         <a class="nav-link text-white" href="${pageContext.request.contextPath}/login">Login</a>
                     </li>

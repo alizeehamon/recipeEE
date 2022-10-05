@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/edit-user")
+@WebServlet("/auth/edit-user")
 public class EditUserServlet extends HttpServlet {
 
     UserService userService = ServiceFactory.getUserService();
@@ -49,6 +49,6 @@ public class EditUserServlet extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(req, resp);
         }
 
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/recipes-list");
     }
 }
