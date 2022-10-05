@@ -1,6 +1,8 @@
 package com.example.recipeee.servlet;
 
 import com.example.recipeee.dao.DAOFactory;
+import com.example.recipeee.dao.entity.Ingredient;
+import com.example.recipeee.dao.entity.IngredientRecipe;
 import com.example.recipeee.dao.entity.Recipe;
 import com.example.recipeee.dao.entity.Step;
 import jakarta.servlet.ServletException;
@@ -10,9 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @WebServlet("/recipe/recipe-details")
 public class RecipeDetailsServlet extends HttpServlet {
@@ -24,8 +24,16 @@ public class RecipeDetailsServlet extends HttpServlet {
             List<Step> steps = DAOFactory.getStepDAO().findStepsByIdRecipe(Long.parseLong(id));
             req.setAttribute("recipe", recipe.get());
             req.setAttribute("steps", steps);
-        }catch (NumberFormatException | NoSuchElementException e) {
-            req.setAttribute("country_not_found", true);
+            List<Ingredient> ingredients = new ArrayList<>();
+            Collection<IngredientRecipe> ingredientRecipes = recipe.get()
+                    .getIngredientRecipesById();
+            for (IngredientRecipe ingredientRecipe:ingredientRecipes) {
+                ingredients.add(ingredientRecipe.getIngredientByIdIngredient());
+            }
+            req.setAttribute("ingredients", ingredients);
+
+        }catch (Exception e) {
+            e.printStackTrace();
         }
 
         req.getRequestDispatcher("/WEB-INF/recipe/recipeDetails.jsp").forward(req, resp);

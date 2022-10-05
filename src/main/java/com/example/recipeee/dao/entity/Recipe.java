@@ -35,7 +35,7 @@ public class Recipe {
     @Basic
     @Column(name = "cook_type", nullable = true, length = 255)
     private String cookType;
-    @OneToMany(mappedBy = "recipeByIdRecipe")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "recipeByIdRecipe")
     private Collection<IngredientRecipe> ingredientRecipesById;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_type_meal", referencedColumnName = "id")

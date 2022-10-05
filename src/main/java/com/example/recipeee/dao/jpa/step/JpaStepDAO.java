@@ -1,7 +1,6 @@
 package com.example.recipeee.dao.jpa.step;
 
 import com.example.recipeee.dao.entity.Step;
-import com.example.recipeee.dao.entity.TypeMeal;
 import com.example.recipeee.dao.jpa.EMFManager;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

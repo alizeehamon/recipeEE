@@ -20,6 +20,14 @@ public class Ingredient {
     @OneToMany(mappedBy = "ingredientByIdIngredient")
     private Collection<IngredientRecipe> ingredientRecipesById;
 
+    public Ingredient() {
+    }
+
+    public Ingredient(String name, String pictureUrl) {
+        this.name = name;
+        this.pictureUrl = pictureUrl;
+    }
+
     public long getId() {
         return id;
     }

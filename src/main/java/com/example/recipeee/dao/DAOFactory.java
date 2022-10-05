@@ -1,6 +1,8 @@
 package com.example.recipeee.dao;
 
 import com.example.recipeee.dao.jpa.JpaUserDAO;
+import com.example.recipeee.dao.jpa.ingredient.JpaIngredientDAO;
+import com.example.recipeee.dao.jpa.ingredientRecipe.JpaIngredientRecipeDAO;
 import com.example.recipeee.dao.jpa.mealType.JpaMealTypeDAO;
 import com.example.recipeee.dao.jpa.recipe.JpaRecipeDAO;
 import com.example.recipeee.dao.jpa.step.JpaStepDAO;
@@ -9,8 +11,9 @@ public final class DAOFactory {
 
     private static JpaUserDAO jpaUserDAO;
     private static JpaMealTypeDAO jpaMealTypeDAO;
-
     private static JpaStepDAO jpaStepDAO;
+    private static JpaIngredientDAO jpaIngredientDAO;
+    private static JpaIngredientRecipeDAO jpaIngredientRecipeDAO;
 
     private DAOFactory() {
     }
@@ -37,5 +40,19 @@ public final class DAOFactory {
             jpaStepDAO = new JpaStepDAO();
         }
         return jpaStepDAO;
+    }
+
+    public static JpaIngredientDAO getIngredientDAO() {
+        if (jpaIngredientDAO == null) {
+            jpaIngredientDAO = new JpaIngredientDAO();
+        }
+        return jpaIngredientDAO;
+    }
+
+    public static JpaIngredientRecipeDAO getIngredientRecipeDAO() {
+        if (jpaIngredientRecipeDAO == null) {
+            jpaIngredientRecipeDAO = new JpaIngredientRecipeDAO();
+        }
+        return jpaIngredientRecipeDAO;
     }
 }

@@ -11,7 +11,7 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="card p-0 w-50">
             <img class="card-img-top" src="${recipe.pictureUrl}" alt="${recipe.name}">
             <div class="card-body shadow container-fluid rounded d-flex flex-column ">
@@ -39,18 +39,21 @@
             <div class="card-body shadow-sm">
                 <p>Liste des ingrédients : </p>
                 <ul class="list-group list-group-flush">
-
-                    <%--
-                    affichage des étapes
                     <c:forEach items="${ingredients}" var="ingredient">
-                        <li>
+                        <li class="list-group-item">
                             ${ingredient.name}
                             <img src="ingredient.pictureUrl"/>
                         </li>
                     </c:forEach>
-                    --%>
-
                 </ul>
+                <div class="card-footer">
+                    <a href="#addIngredient" class="btn btn-primary" data-bs-toggle="collapse">Add ingredient</a>
+                    <div id="addIngredient" class="collapse">
+                        <jsp:include page="../ingredient/addIngredientForm.jsp">
+                            <jsp:param name="idRecipe" value="${recipe.id}"/>
+                        </jsp:include>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <p>Etapes à suivre : </p>

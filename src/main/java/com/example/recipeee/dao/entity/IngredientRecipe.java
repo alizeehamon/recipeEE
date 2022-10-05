@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ingredient_recipe", schema = "recipeee", catalog = "")
+@Table(name = "ingredient_recipe", schema = "recipeee")
 public class IngredientRecipe {
     @Basic
     @Column(name = "qty_ingredient", nullable = false)
@@ -14,10 +14,10 @@ public class IngredientRecipe {
     @Id
     @Column(name = "id", nullable = false)
     private long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_recipe", referencedColumnName = "id", nullable = false)
     private Recipe recipeByIdRecipe;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_ingredient", referencedColumnName = "id", nullable = false)
     private Ingredient ingredientByIdIngredient;
 
