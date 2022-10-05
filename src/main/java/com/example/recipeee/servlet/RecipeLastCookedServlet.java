@@ -7,18 +7,19 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/recipe/last-cooked")
+@WebServlet("/auth/recipe/last-cooked")
 public class RecipeLastCookedServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // String userId = req.getParameter("user-id"); // possiblement sessionScope
-        String recipeId = req.getParameter("recipe-id");
+        HttpSession session = req.getSession(false);
+        long userId = (long) session.getAttribute("id");
 
-        Long userId = 1L;
+        String recipeId = req.getParameter("recipe-id");
         java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
         String cookDate = sdf.format(dt);
@@ -36,7 +37,7 @@ public class RecipeLastCookedServlet extends HttpServlet {
                 long userRecipeID = DAOFactory.getRecipeUserDAO().findID(Long.parseLong(recipeId));
                 try {
                     RecipeUser cookedRecipe = DAOFactory.getRecipeUserDAO().findById(userRecipeID).get();
-                    DAOFactory.getRecipeUserDAO().update(cookedRecipe.getId(), cookDate);
+                    DAOFactory.getRecipeUserDAO().update(cookedRecipe.getId(), new RecipeUser(cookDate, DAOFactory.getUserDAO().findById(userId).get(), DAOFactory.getRecipeDAO().findById(Long.parseLong(recipeId)).get()));
                 } catch (Exception e) {
                     System.out.println("user not found");
                     e.printStackTrace();

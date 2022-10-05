@@ -7,7 +7,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -94,14 +93,16 @@ public class JpaRecipeUserDAO implements RecipeUserDAO {
     }
 
     @Override
-    public void update(long id, String updatedRecipeUser) {
+    public void update(long id, RecipeUser updatedRecipeUser) {
         EntityManagerFactory emf = EMFManager.getEMF();
         EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
             RecipeUser recipeUser1 = em.find(RecipeUser.class, id);
-            recipeUser1.setCookDate(Date.valueOf(updatedRecipeUser));
+            recipeUser1.setCookDate(updatedRecipeUser.getCookDate());
+            recipeUser1.setRecipeByIdRecipe(updatedRecipeUser.getRecipeByIdRecipe());
+            recipeUser1.setUserByIdUser(updatedRecipeUser.getUserByIdUser());
             em.getTransaction().commit();
         } catch (Exception e) {
             System.out.println("la table est vide ? / ou n'a pas pu etre atteinte");

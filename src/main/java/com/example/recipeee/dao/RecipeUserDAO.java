@@ -14,7 +14,7 @@ public interface RecipeUserDAO {
 
     Optional<RecipeUser> findById(long idParam);
 
-    void update(long id, String updatedRecipeUser);
+    void update(long id, RecipeUser updatedRecipeUser);
 
     public Long findID (long recipeID);
 }
