@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <div class="container-form">
 
     <h1 class="text-white">Create your account</h1>
@@ -46,5 +46,5 @@
 </div>
 
 </body>
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="../footer.jsp"></jsp:include>
 </html>

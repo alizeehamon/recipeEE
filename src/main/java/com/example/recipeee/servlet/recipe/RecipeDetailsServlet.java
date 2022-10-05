@@ -1,4 +1,4 @@
-package com.example.recipeee.servlet;
+package com.example.recipeee.servlet.recipe;
 
 import com.example.recipeee.dao.DAOFactory;
 import com.example.recipeee.dao.entity.Ingredient;
@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
-@WebServlet("/auth/recipe/recipe-details")
+@WebServlet("/auth/recipe-details")
 public class RecipeDetailsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

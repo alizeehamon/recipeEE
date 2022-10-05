@@ -1,4 +1,4 @@
-package com.example.recipeee.servlet;
+package com.example.recipeee.servlet.user;
 
 import com.example.recipeee.dao.entity.User;
 import com.example.recipeee.service.ServiceFactory;
@@ -22,10 +22,10 @@ public class EditUserServlet extends HttpServlet {
         try{
         User user = userService.getUserById(Long.parseLong(idStr));
         req.setAttribute("user", user);
-        req.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/user/editUser.jsp").forward(req, resp);
         }catch(Exception e){
             e.printStackTrace();
-            resp.sendRedirect(req.getContextPath() + "/");
+            resp.sendRedirect(req.getContextPath() + "/recipes-list");
         }
     }
 
@@ -46,7 +46,7 @@ public class EditUserServlet extends HttpServlet {
 
         }catch(Exception e){
             e.printStackTrace();
-            req.getRequestDispatcher("/WEB-INF/editUser.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/user/editUser.jsp").forward(req, resp);
         }
 
         resp.sendRedirect(req.getContextPath() + "/recipes-list");

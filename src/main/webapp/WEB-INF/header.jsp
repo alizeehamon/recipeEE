@@ -24,7 +24,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white"
-                           href="${pageContext.request.contextPath}/auth/recipe/add-recipe">Add a recipe</a>
+                           href="${pageContext.request.contextPath}/auth/add-recipe">Add a recipe</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white"

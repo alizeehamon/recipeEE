@@ -17,7 +17,7 @@
 
     <div class="row bg-light p-4 rounded mb-3">
 
-        <form class="d-flex flex-column align-items-center justify-content-center" action="${pageContext.request.contextPath}/auth/recipe/add-recipe" method="POST">
+        <form class="d-flex flex-column align-items-center justify-content-center" action="${pageContext.request.contextPath}/auth/add-recipe" method="POST">
             <div class="form-group mb-2 w-100">
             <label for="recipeName">Recipe name</label>
             <input class="form-control" id="recipeName" type="text" name="recipeName">

@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet("/step/add-step")
+@WebServlet("/add-step")
 public class AddStepServlet extends HttpServlet {
 
     @Override
@@ -19,6 +19,6 @@ public class AddStepServlet extends HttpServlet {
         Recipe recipe = DAOFactory.getRecipeDAO().findById(idRecipe).get();
         Step step = new Step(description, recipe);
         DAOFactory.getStepDAO().create(step);
-        response.sendRedirect(request.getContextPath() + "/recipe/recipe-details?id=" + idRecipe);
+        response.sendRedirect(request.getContextPath() + "/auth/recipe-details?id=" + idRecipe);
     }
 }

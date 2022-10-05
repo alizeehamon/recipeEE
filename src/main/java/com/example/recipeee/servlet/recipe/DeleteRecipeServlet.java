@@ -1,4 +1,4 @@
-package com.example.recipeee.servlet;
+package com.example.recipeee.servlet.recipe;
 
 import com.example.recipeee.service.ServiceFactory;
 import com.example.recipeee.service.recipe.RecipeService;
@@ -28,7 +28,7 @@ public class DeleteRecipeServlet extends HttpServlet {
             req.setAttribute("error_format_id", true);
         }
 
-        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/deleteRecipe.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/recipe/deleteRecipe.jsp");
         rd.forward(req, resp);
     }
 
@@ -41,7 +41,7 @@ public class DeleteRecipeServlet extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/recipes-list");
 
         } catch (NumberFormatException e) {
-            RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/deleteRecipe.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/recipe/deleteRecipe.jsp");
             req.setAttribute("error_format_id", true);
             rd.forward(req, resp);
         }

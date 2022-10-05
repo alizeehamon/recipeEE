@@ -1,4 +1,4 @@
-package com.example.recipeee.servlet;
+package com.example.recipeee.servlet.user;
 
 import com.example.recipeee.dao.entity.User;
 import com.example.recipeee.service.ServiceFactory;
@@ -19,7 +19,7 @@ public class AddUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/createUser.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/user/createUser.jsp");
         rd.forward(req, resp);
     }
 
@@ -33,7 +33,7 @@ public class AddUserServlet extends HttpServlet {
 
         userService.create(new User(firstName, lastName, pictureUrl, email, password));
 
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/login");
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.recipeee.servlet;
+package com.example.recipeee.servlet.recipe;
 
 import com.example.recipeee.dao.DAOFactory;
 import com.example.recipeee.dao.entity.Recipe;
@@ -25,7 +25,7 @@ public class ListRecipeServlet extends HttpServlet {
         List<TypeMeal> typesList = typeMealService.findAll();
         request.setAttribute("mealTypes", typesList);
         request.setAttribute("recipes" , recipesList);
-        request.getRequestDispatcher("WEB-INF/listRecipes.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/recipe/listRecipes.jsp").forward(request, response);
 
     }
 
@@ -39,6 +39,6 @@ public class ListRecipeServlet extends HttpServlet {
         List<TypeMeal> typesList = typeMealService.findAll();
         request.setAttribute("mealTypes", typesList);
         request.setAttribute("recipes" , filterRecipe);
-        request.getRequestDispatcher("WEB-INF/listRecipes.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/recipe/listRecipes.jsp").forward(request, response);
     }
 }

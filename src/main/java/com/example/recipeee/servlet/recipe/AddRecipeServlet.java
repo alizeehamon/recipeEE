@@ -3,8 +3,6 @@ package com.example.recipeee.servlet.recipe;
 import com.example.recipeee.dao.DAOFactory;
 import com.example.recipeee.dao.entity.Recipe;
 import com.example.recipeee.dao.entity.TypeMeal;
-import com.example.recipeee.dao.entity.User;
-import com.example.recipeee.service.typemeal.TypeMealService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -12,7 +10,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/auth/recipe/add-recipe")
+@WebServlet("/auth/add-recipe")
 public class AddRecipeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +36,7 @@ public class AddRecipeServlet extends HttpServlet {
         Recipe recipe = new Recipe(recipeName, difficulty, pictureUrl, cookTime, preparation, restTime, expanse, cookType, typeMeal);
         DAOFactory.getRecipeDAO().create(recipe);
 
-        response.sendRedirect(request.getContextPath() + "/");
+        response.sendRedirect(request.getContextPath() + "/recipes-list");
 
     }
 }

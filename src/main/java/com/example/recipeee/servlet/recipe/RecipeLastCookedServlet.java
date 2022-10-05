@@ -1,4 +1,4 @@
-package com.example.recipeee.servlet;
+package com.example.recipeee.servlet.recipe;
 
 import com.example.recipeee.dao.DAOFactory;
 import com.example.recipeee.dao.entity.RecipeUser;
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/auth/recipe/last-cooked")
+@WebServlet("/auth/last-cooked")
 public class RecipeLastCookedServlet extends HttpServlet {
 
     @Override
@@ -50,5 +50,6 @@ public class RecipeLastCookedServlet extends HttpServlet {
             System.out.println("not found");
             e.printStackTrace();
         }
+        resp.sendRedirect(req.getContextPath() + "/auth/recipe-details?id=" + recipeId);
     }
 }
