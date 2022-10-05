@@ -36,4 +36,8 @@ public class UserService {
         }
         return false;
     }
+
+    public long validateUser(String email, String password) {
+        return userDAO.validateUser(email, password);
+    }
 }

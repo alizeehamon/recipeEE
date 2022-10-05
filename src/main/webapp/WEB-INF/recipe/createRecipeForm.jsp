@@ -14,7 +14,7 @@
 
     <div class="row">
 
-        <form action="${pageContext.request.contextPath}/recipe/add-recipe" method="POST">
+        <form action="${pageContext.request.contextPath}/auth/recipe/add-recipe" method="POST">
 
             <label for="recipeName">Recipe name</label>
             <input id="recipeName" type="text" name="recipeName">

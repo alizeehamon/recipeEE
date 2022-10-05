@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@WebServlet("/recipe-details")
+@WebServlet("/auth/recipe-details")
 public class RecipeDetailsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

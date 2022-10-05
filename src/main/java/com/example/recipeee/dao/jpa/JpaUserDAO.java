@@ -2,9 +2,7 @@ package com.example.recipeee.dao.jpa;
 
 import com.example.recipeee.dao.UserDAO;
 import com.example.recipeee.dao.entity.User;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -75,5 +73,24 @@ public class JpaUserDAO implements UserDAO {
             em.close();
         }
         return false;
+    }
+
+    @Override
+    public long validateUser(String email, String password) {
+        EntityManagerFactory emf = EMFManager.getEMF();
+        EntityManager em = emf.createEntityManager();
+        try {
+            User user = em.createQuery(
+                    "select u from User u where u.email = :email and u.password = :password", User.class)
+                    .setParameter("email", email)
+                    .setParameter("password", password)
+                    .getSingleResult();
+            return user.getId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return 0;
     }
 }
