@@ -9,7 +9,7 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <div class="container">
     <div class="row">
         <div class="card p-0 w-50">
@@ -55,20 +55,25 @@
             <div class="card-body">
                 <p>Etapes à suivre : </p>
                 <ul class="list-group list-group-flush">
-
-                    <%--
-                    affichage des étapes
                     <c:forEach items="${steps}" var="step">
-                        <li>
+                        <li class="list-group-item">
                             ${step.description}
                         </li>
                     </c:forEach>
-                    --%>
                 </ul>
+            </div>
+            <div class="card-footer">
+                <a href="#addStep" class="btn btn-primary" data-bs-toggle="collapse">Add step</a>
+                <div id="addStep" class="collapse">
+                    <jsp:include page="../step/addStepForm.jsp">
+                        <jsp:param name="idRecipe" value="${recipe.id}"/>
+                    </jsp:include>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>

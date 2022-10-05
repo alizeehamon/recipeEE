@@ -17,6 +17,14 @@ public class Step {
     @JoinColumn(name = "id_recipe", referencedColumnName = "id", nullable = false)
     private Recipe recipeByIdRecipe;
 
+    public Step() {
+    }
+
+    public Step(String description, Recipe recipeByIdRecipe) {
+        this.description = description;
+        this.recipeByIdRecipe = recipeByIdRecipe;
+    }
+
     public long getId() {
         return id;
     }

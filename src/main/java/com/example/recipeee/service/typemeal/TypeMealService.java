@@ -1,9 +1,8 @@
 package com.example.recipeee.service.typemeal;
 
 import com.example.recipeee.dao.DAOFactory;
-import com.example.recipeee.dao.UserDAO;
 import com.example.recipeee.dao.entity.TypeMeal;
-import com.example.recipeee.dao.jpa.mealtype.JpaMealTypeDAO;
+import com.example.recipeee.dao.jpa.mealType.JpaMealTypeDAO;
 
 import java.util.List;
 

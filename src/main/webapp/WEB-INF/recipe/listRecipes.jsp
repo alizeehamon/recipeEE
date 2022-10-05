@@ -10,7 +10,7 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <div class="container">
     <div class="row">
         <c:forEach items="${recipes}" var="recipe">

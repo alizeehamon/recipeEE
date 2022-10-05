@@ -1,6 +1,5 @@
-package com.example.recipeee.dao.jpa.mealtype;
+package com.example.recipeee.dao.jpa.mealType;
 
-import com.example.recipeee.dao.entity.Recipe;
 import com.example.recipeee.dao.entity.TypeMeal;
 import com.example.recipeee.dao.jpa.EMFManager;
 import jakarta.persistence.EntityManager;
