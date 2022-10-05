@@ -6,6 +6,7 @@ import com.example.recipeee.dao.jpa.ingredientRecipe.JpaIngredientRecipeDAO;
 import com.example.recipeee.dao.jpa.mealType.JpaMealTypeDAO;
 import com.example.recipeee.dao.jpa.recipe.JpaRecipeDAO;
 import com.example.recipeee.dao.jpa.step.JpaStepDAO;
+import com.example.recipeee.dao.jpa.recipeUser.JpaRecipeUserDAO;
 
 public final class DAOFactory {
 
@@ -20,6 +21,9 @@ public final class DAOFactory {
 
     public static RecipeDAO getRecipeDAO() {
         return new JpaRecipeDAO();
+    }
+    public static RecipeUserDAO getRecipeUserDAO() {
+        return new JpaRecipeUserDAO();
     }
     public static UserDAO getUserDAO() {
         if (jpaUserDAO == null) {

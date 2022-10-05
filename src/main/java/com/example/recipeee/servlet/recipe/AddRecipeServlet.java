@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/recipe/add-recipe")
+@WebServlet("/auth/recipe/add-recipe")
 public class AddRecipeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

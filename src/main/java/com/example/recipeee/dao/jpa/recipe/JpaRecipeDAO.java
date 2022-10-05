@@ -14,10 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class JpaRecipeDAO implements RecipeDAO {
+
+    EntityManagerFactory emf = EMFManager.getEMF();
     @Override
     public List<Recipe> findAll() {
         List<Recipe> recipes = new ArrayList<>();
-        EntityManagerFactory emf = EMFManager.getEMF();
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -34,7 +35,6 @@ public class JpaRecipeDAO implements RecipeDAO {
     @Override
     public List<Recipe> findByNameAndType(String name, Long typeId) {
         List<Recipe> recipes = new ArrayList<>();
-        EntityManagerFactory emf = EMFManager.getEMF();
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<Recipe> query = em.createQuery(
@@ -54,7 +54,6 @@ public class JpaRecipeDAO implements RecipeDAO {
     @Override
     public List<Recipe> findByName(String name) {
         List<Recipe> recipes = new ArrayList<>();
-        EntityManagerFactory emf = EMFManager.getEMF();
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<Recipe> query = em.createQuery(
@@ -73,7 +72,6 @@ public class JpaRecipeDAO implements RecipeDAO {
     @Override
     public List<Recipe> findByType(Long typeId) {
         List<Recipe> recipes = new ArrayList<>();
-        EntityManagerFactory emf = EMFManager.getEMF();
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<Recipe> query = em.createQuery(
@@ -92,7 +90,6 @@ public class JpaRecipeDAO implements RecipeDAO {
     @Override
     public Optional<Recipe> findById(long idParam) {
         Recipe recipe = null;
-        EntityManagerFactory emf = EMFManager.getEMF();
         EntityManager em = emf.createEntityManager();
         try {
             recipe = em.find(Recipe.class, idParam);
@@ -106,7 +103,6 @@ public class JpaRecipeDAO implements RecipeDAO {
 
     @Override
     public boolean create(Recipe recipe) {
-        EntityManagerFactory emf = EMFManager.getEMF();
         EntityManager em = emf.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         try {
@@ -124,6 +120,27 @@ public class JpaRecipeDAO implements RecipeDAO {
                 transaction.rollback();
             }
         }finally {
+            em.close();
+        }
+        return false;
+    }
+
+    public boolean delete(long id) {
+        Recipe recipe;
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try{
+            et.begin();
+            recipe = em.find(Recipe.class, id);
+                em.remove(recipe);
+                et.commit();
+                return true;
+
+        }catch(Exception e){
+            if(et.isActive()){
+                et.rollback();
+            }
+        } finally {
             em.close();
         }
         return false;

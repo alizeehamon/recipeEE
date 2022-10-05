@@ -15,4 +15,6 @@ public interface UserDAO {
     boolean delete(long id);
 
     boolean edit(User userToEdit);
+
+    long validateUser(String email, String password);
 }

@@ -1,0 +1,14 @@
+.container-form{
+    background-image: url("http://images.pexels.com/photos/1435895/pexels-photo-1435895.jpeg");
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+footer{
+    position: absolute;
+}

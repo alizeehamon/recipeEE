@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
-@Table(name = "recipe_user", schema = "recipeee", catalog = "")
+@Table(name = "recipe_user", schema = "recipeee")
 public class RecipeUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -19,8 +20,17 @@ public class RecipeUser {
     @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false)
     private User userByIdUser;
     @ManyToOne
-    @JoinColumn(name = "id_recipe", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_recipe", referencedColumnName = "id", nullable = false, unique=true)
     private Recipe recipeByIdRecipe;
+
+    public RecipeUser() {
+    }
+
+    public RecipeUser(String cookDate, User userByIdUser, Recipe recipeByIdRecipe) {
+        this.cookDate = Date.valueOf(cookDate);
+        this.userByIdUser = userByIdUser;
+        this.recipeByIdRecipe = recipeByIdRecipe;
+    }
 
     public long getId() {
         return id;

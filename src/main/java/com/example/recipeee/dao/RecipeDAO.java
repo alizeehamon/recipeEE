@@ -18,4 +18,6 @@ public interface RecipeDAO {
     Optional<Recipe> findById(long idParam);
 
     public boolean create(Recipe recipe);
+
+    boolean delete(long id);
 }

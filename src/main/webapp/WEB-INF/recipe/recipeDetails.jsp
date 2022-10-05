@@ -73,10 +73,21 @@
                     </jsp:include>
                 </div>
             </div>
+            <div class="card-body">
+                <form action="${pageContext.request.contextPath}/auth/recipe/last-cooked" method="post">
+                    <input hidden type="text" name="user-id" value="${1}">
+                    <input hidden type="text" name="recipe-id" value="${recipe.id}">
+                    <button type="submit">I cooked this !</button>
+                </form>
+                <c:if test="${not empty sessionScope}"><button class="btn btn-danger mt-2"><a class="text-decoration-none text-white" href="${pageContext.request.contextPath}/auth/delete-recipe?id=${recipe.id}">Delete</a></button></c:if>
+            </div>
+
         </div>
     </div>
 </div>
-<!-- JavaScript Bundle with Popper -->
+
+<jsp:include page="../footer.jsp"></jsp:include>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
