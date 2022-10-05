@@ -4,10 +4,7 @@ import com.example.recipeee.dao.entity.TypeMeal;
 import com.example.recipeee.dao.jpa.EMFManager;
 import com.example.recipeee.dao.entity.Recipe;
 import com.example.recipeee.dao.RecipeDAO;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +12,18 @@ import java.util.Optional;
 
 public class JpaRecipeDAO implements RecipeDAO {
 
-    EntityManagerFactory emf = EMFManager.getEMF();
     @Override
     public List<Recipe> findAll() {
         List<Recipe> recipes = new ArrayList<>();
+        EntityManagerFactory emf = EMFManager.getEMF();
         EntityManager em = emf.createEntityManager();
         try {
+
             em.getTransaction().begin();
             recipes = em.createQuery("Select country from Recipe country", Recipe.class).getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("la table est vide ? / ou n'a pas pu etre atteinte");
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -34,8 +32,10 @@ public class JpaRecipeDAO implements RecipeDAO {
 
     @Override
     public List<Recipe> findByNameAndType(String name, Long typeId) {
+        EntityManagerFactory emf = EMFManager.getEMF();
         List<Recipe> recipes = new ArrayList<>();
         EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
         try {
             TypedQuery<Recipe> query = em.createQuery(
                     "select r from Recipe r join TypeMeal t on t.id = r.typeMealByIdTypeMeal.id where r.name like concat('%', :name, '%') and t.id = :typeId", Recipe.class);
@@ -43,6 +43,7 @@ public class JpaRecipeDAO implements RecipeDAO {
                     .setParameter("name", name)
                     .setParameter("typeId", typeId)
                     .getResultList();
+            em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -53,14 +54,18 @@ public class JpaRecipeDAO implements RecipeDAO {
 
     @Override
     public List<Recipe> findByName(String name) {
+        EntityManagerFactory emf = EMFManager.getEMF();
         List<Recipe> recipes = new ArrayList<>();
         EntityManager em = emf.createEntityManager();
+
         try {
+            em.getTransaction().begin();
             TypedQuery<Recipe> query = em.createQuery(
                     "select r from Recipe r where r.name like concat('%', :name, '%')", Recipe.class);
             recipes = query
                     .setParameter("name", name)
                     .getResultList();
+            em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -71,14 +76,17 @@ public class JpaRecipeDAO implements RecipeDAO {
 
     @Override
     public List<Recipe> findByType(Long typeId) {
+        EntityManagerFactory emf = EMFManager.getEMF();
         List<Recipe> recipes = new ArrayList<>();
         EntityManager em = emf.createEntityManager();
         try {
+            em.getTransaction().begin();
             TypedQuery<Recipe> query = em.createQuery(
                     "select r from Recipe r join TypeMeal t on t.id = r.typeMealByIdTypeMeal.id where t.id = :typeId", Recipe.class);
             recipes = query
                     .setParameter("typeId", typeId)
                     .getResultList();
+            em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -89,10 +97,13 @@ public class JpaRecipeDAO implements RecipeDAO {
 
     @Override
     public Optional<Recipe> findById(long idParam) {
+        EntityManagerFactory emf = EMFManager.getEMF();
         Recipe recipe = null;
         EntityManager em = emf.createEntityManager();
         try {
+            em.getTransaction().begin();
             recipe = em.find(Recipe.class, idParam);
+            em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -103,6 +114,7 @@ public class JpaRecipeDAO implements RecipeDAO {
 
     @Override
     public boolean create(Recipe recipe) {
+        EntityManagerFactory emf = EMFManager.getEMF();
         EntityManager em = emf.createEntityManager();
         EntityTransaction transaction = em.getTransaction();
         try {
@@ -126,6 +138,7 @@ public class JpaRecipeDAO implements RecipeDAO {
     }
 
     public boolean delete(long id) {
+        EntityManagerFactory emf = EMFManager.getEMF();
         Recipe recipe;
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();

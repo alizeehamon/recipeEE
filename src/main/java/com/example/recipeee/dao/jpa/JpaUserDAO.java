@@ -10,6 +10,8 @@ import java.util.Optional;
 public class JpaUserDAO implements UserDAO {
 
     EntityManagerFactory emf = EMFManager.getEMF();
+    //@PersistenceContext
+    //public EntityManager em;
 
     @Override
     public List<User> findAll() {
@@ -29,7 +31,7 @@ public class JpaUserDAO implements UserDAO {
                 et.rollback();
             }
         } finally {
-            em.close();
+            //em.close();
         }
         return 0;
     }
