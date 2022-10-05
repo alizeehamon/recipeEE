@@ -1,12 +1,13 @@
 package com.example.recipeee.dao.jpa.recipeUser;
 
+import com.example.recipeee.dao.DAOFactory;
 import com.example.recipeee.dao.RecipeUserDAO;
+import com.example.recipeee.dao.entity.Recipe;
 import com.example.recipeee.dao.entity.RecipeUser;
 import com.example.recipeee.dao.jpa.EMFManager;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -59,16 +60,11 @@ public class JpaRecipeUserDAO implements RecipeUserDAO {
         try {
             et.begin();
             RecipeUser query = em.createQuery("SELECT i from RecipeUser i where i.recipeByIdRecipe.id = :idRecipe", RecipeUser.class).setParameter("idRecipe", idParam).getSingleResult();
-
-            if (query != null){
-                return true;
-            }else {
-                return false;
-            }
+            return query != null;
         } catch (Exception e) {
             System.out.println("test");
             e.printStackTrace();
-        }finally {
+        } finally {
             em.close();
         }
         return false;
@@ -121,7 +117,33 @@ public class JpaRecipeUserDAO implements RecipeUserDAO {
         } catch (Exception E) {
             System.out.println("id not found");
             E.printStackTrace();
+        } finally {
+            em.close();
         }
         return id;
+    }
+
+    public List<Recipe> findAllSixDays() {
+        List<RecipeUser> recipeUsers = null;
+        List<Recipe> recipeCookSix = null;
+        EntityManagerFactory emf = EMFManager.getEMF();
+        EntityManager em = emf.createEntityManager();
+        LocalDate ld = LocalDate.now();
+        ld= ld.minusDays(6);
+        try {
+            recipeUsers = em.createQuery("SELECT r FROM RecipeUser r where r.cookDate >= :sixDays", RecipeUser.class).setParameter("sixDays", ld).getResultList();
+            if (recipeUsers.size() != 0){
+                for (RecipeUser recipe: recipeUsers) {
+                    Optional<Recipe> searchedRecipe = Optional.of(DAOFactory.getRecipeDAO().findById(recipe.getId()).get());
+                    searchedRecipe.ifPresent(value -> recipeCookSix.add(value));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("erreur query 6 days");
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return recipeCookSix;
     }
 }
