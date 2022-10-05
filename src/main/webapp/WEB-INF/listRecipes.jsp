@@ -13,6 +13,19 @@
 <jsp:include page="header.jsp"/>
 <div class="container">
     <div class="row">
+        <c:if test="${not empty sessionScope.email && not empty sessionScope.password}">
+        <form action="${pageContext.request.contextPath}/recipes-list" method="POST">
+            <label for="site-search">Search recipes by name:</label>
+            <input type="searchName" id="site-search" name="searchName">
+
+            <label for="mealType-select">Choose a type of meal:</label>
+            <select name="mealType" id="mealType-select">
+                <option value="">--Please choose a meal type--</option>
+                <c:forEach items="${mealTypes}" var="mealType"><option value="${mealType.id}">${mealType.name}</option></c:forEach>
+            </select>
+            <button>Search</button>
+        </form>
+        </c:if>
         <c:forEach items="${recipes}" var="recipe">
             <div class="card col-3">
                 <img class="card-img-top" src="${recipe.pictureUrl}" alt="${recipe.name}">
@@ -23,17 +36,6 @@
             </div>
         </c:forEach>
 
-    <form action="${pageContext.request.contextPath}/recipes-list" method="POST">
-    <label for="site-search">Search recipes by name:</label>
-    <input type="searchName" id="site-search" name="searchName">
-
-    <label for="mealType-select">Choose a type of meal:</label>
-    <select name="mealType" id="mealType-select">
-        <option value="">--Please choose a meal type--</option>
-        <c:forEach items="${mealTypes}" var="mealType"><option value="${mealType.id}">${mealType.name}</option></c:forEach>
-    </select>
-    <button>Search</button>
-    </form>
     </div>
 </div>
 <script src="https://kit.fontawesome.com/a2dedf79e7.js" crossorigin="anonymous"></script>

@@ -13,7 +13,7 @@
     <h1>Edit your account</h1>
 
     <div class="row">
-        <form action="${pageContext.request.contextPath}/edit-user" method="POST">
+        <form action="${pageContext.request.contextPath}/auth/edit-user" method="POST">
             <input hidden name="idUser" value="${user.id}">
             <label for="firstName">First name</label>
             <input id="firstName" type="text" name="firstName" value="${user.firstName}">
