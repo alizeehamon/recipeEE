@@ -22,7 +22,10 @@
                     <li class="nav-item active">
                         <a class="nav-link text-white" href="#">Get a random recipe</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link text-white"
+                           href="${pageContext.request.contextPath}/auth/recipe/add-recipe">Add a recipe</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-white"
                            href="${pageContext.request.contextPath}/auth/edit-user?id=${sessionScope.id}">My profile</a>

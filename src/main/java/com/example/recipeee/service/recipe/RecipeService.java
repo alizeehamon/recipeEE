@@ -26,4 +26,7 @@ public class RecipeService {
         }
     }
 
+    public boolean delete(long id) {
+        return recipeDAO.delete(id);
+    }
 }
