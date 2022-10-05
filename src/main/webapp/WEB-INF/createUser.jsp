@@ -5,33 +5,40 @@
     <title>Recipe EE | Join</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        <%@include file="/WEB-INF/css/style.css" %>
+    </style>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<div class="container">
+<div class="container-form">
 
-    <h1>Create your account</h1>
+    <h1 class="text-white">Create your account</h1>
 
-    <div class="row">
+    <div class="row bg-light p-4 rounded">
 
-        <form action="${pageContext.request.contextPath}/add-user" method="POST">
-
+        <form class="d-flex flex-column align-items-center justify-content-center" action="${pageContext.request.contextPath}/add-user" method="POST">
+            <div class="form-group mb-2 w-100">
             <label for="firstName">First name</label>
-            <input id="firstName" type="text" name="firstName">
-
+            <input class="form-control" id="firstName" type="text" name="firstName">
+            </div>
+            <div class="form-group mb-2 w-100">
             <label for="lastName">Last name</label>
-            <input id="lastName" type="text" name="lastName">
-
+            <input class="form-control" id="lastName" type="text" name="lastName">
+            </div>
+            <div class="form-group mb-2 w-100">
             <label for="pictureUrl">Picture</label>
-            <input id="pictureUrl" type="text" name="pictureUrl">
-
+            <input class="form-control" id="pictureUrl" type="text" name="pictureUrl">
+            </div>
+            <div class="form-group mb-2 w-100">
             <label for="email">Email</label>
-            <input id="email" type="text" name="email">
-
+            <input class="form-control" id="email" type="text" name="email">
+            </div>
+            <div class="form-group mb-2 w-100">
             <label for="password">Password</label>
-            <input id="password" type="password" name="password">
-
-            <button type="submit">Create an account</button>
+            <input class="form-control" id="password" type="password" name="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Create an account</button>
         </form>
 
     </div>
@@ -39,4 +46,5 @@
 </div>
 
 </body>
+<jsp:include page="footer.jsp"></jsp:include>
 </html>

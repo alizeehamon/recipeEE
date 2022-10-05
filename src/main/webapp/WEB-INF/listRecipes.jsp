@@ -11,9 +11,9 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<div class="container">
+<div class="container h-100">
     <div class="row">
-        <c:if test="${not empty sessionScope.email && not empty sessionScope.password}">
+    <c:if test="${not empty sessionScope.email && not empty sessionScope.password}">
         <form action="${pageContext.request.contextPath}/recipes-list" method="POST">
             <label for="site-search">Search recipes by name:</label>
             <input type="searchName" id="site-search" name="searchName">
@@ -23,9 +23,11 @@
                 <option value="">--Please choose a meal type--</option>
                 <c:forEach items="${mealTypes}" var="mealType"><option value="${mealType.id}">${mealType.name}</option></c:forEach>
             </select>
-            <button>Search</button>
+            <button class="btn btn-primary">Search</button>
         </form>
-        </c:if>
+    </c:if>
+    </div>
+    <div class="row">
         <c:forEach items="${recipes}" var="recipe">
             <div class="card col-3">
                 <img class="card-img-top" src="${recipe.pictureUrl}" alt="${recipe.name}">
@@ -39,4 +41,5 @@
     </div>
 </div>
 </body>
+<jsp:include page="footer.jsp"></jsp:include>
 </html>
