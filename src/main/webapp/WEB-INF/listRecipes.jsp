@@ -31,13 +31,12 @@
                 <img class="card-img-top" src="${recipe.pictureUrl}" alt="${recipe.name}">
                 <div class="card-body">
                     <h5 class="card-title">${recipe.name}</h5>
-                    <a href="${pageContext.request.contextPath}/recipe-details?id=${recipe.id}">Afficher la recette</a>
+                    <a href="${pageContext.request.contextPath}/auth/recipe-details?id=${recipe.id}">Afficher la recette</a>
                 </div>
             </div>
         </c:forEach>
 
     </div>
 </div>
-<script src="https://kit.fontawesome.com/a2dedf79e7.js" crossorigin="anonymous"></script>
 </body>
 </html>

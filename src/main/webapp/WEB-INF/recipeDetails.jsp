@@ -41,7 +41,7 @@
                 <ul class="list-group list-group-flush">
 
                     <%--
-                    affichage des étapes
+                    affichage des ingredients
                     <c:forEach items="${ingredients}" var="ingredient">
                         <li>
                             ${ingredient.name}
@@ -65,6 +65,13 @@
                     </c:forEach>
                     --%>
                 </ul>
+            </div>
+            <div class="card-body">
+                <form action="${pageContext.request.contextPath}/auth/recipe/last-cooked" method="post">
+                    <input hidden type="text" name="user-id" value="${1}">
+                    <input hidden type="text" name="recipe-id" value="${recipe.id}">
+                    <button type="submit">I cooked this !</button>
+                </form>
             </div>
         </div>
     </div>
