@@ -4,6 +4,9 @@
 ### Ignore persistence.xml
 **/persistence.xml
 
+### Ignore pom.xml
+/pom.xml
+
 ### Mac OS X
 **/.DS_Store
 *.DS_Store
