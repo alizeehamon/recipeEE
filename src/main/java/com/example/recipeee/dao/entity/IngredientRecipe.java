@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ingredient_recipe", schema = "recipeee")
+@Table(name = "ingredient_recipe", schema = "recipeee", catalog = "")
 public class IngredientRecipe {
     @Basic
     @Column(name = "qty_ingredient", nullable = false)

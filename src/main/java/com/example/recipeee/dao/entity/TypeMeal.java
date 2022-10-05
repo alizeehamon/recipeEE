@@ -18,6 +18,13 @@ public class TypeMeal {
     @OneToMany(mappedBy = "typeMealByIdTypeMeal")
     private Collection<Recipe> recipesById;
 
+    public TypeMeal() {
+    }
+
+    public TypeMeal(String name) {
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }

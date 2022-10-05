@@ -1,5 +1,6 @@
 package com.example.recipeee.dao.jpa.recipe;
 
+import com.example.recipeee.dao.entity.TypeMeal;
 import com.example.recipeee.dao.jpa.EMFManager;
 import com.example.recipeee.dao.entity.Recipe;
 import com.example.recipeee.dao.RecipeDAO;
@@ -110,6 +111,11 @@ public class JpaRecipeDAO implements RecipeDAO {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
+            String typeMealName = recipe.getTypeMealByIdTypeMeal().getName();
+            List<TypeMeal> typeMeals = em.createQuery("SELECT tm FROM TypeMeal tm WHERE tm.name = :name", TypeMeal.class).setParameter("name", typeMealName).getResultList();
+            if (typeMeals.size()==1){
+                recipe.setTypeMealByIdTypeMeal(typeMeals.get(0));
+            }
             em.persist(recipe);
             transaction.commit();
             return true;

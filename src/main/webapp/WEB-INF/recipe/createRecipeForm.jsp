@@ -37,11 +37,14 @@
             <label for="expanse">Expanse</label>
             <input id="expanse" type="number" name="expanse">
 
+            <label for="cookType">Cook Type</label>
+            <input id="cookType" type="text" name="cookType">
+
             <label for="mealType">Meal Type</label>
-            <input id="mealType" name="mealType" type="text" list="mealTypes" />
+            <input id="mealType" name="typeMeal" type="text" list="mealTypes" />
             <datalist id="mealTypes">
-                <c:forEach items="${mealTypes}" var="mealType">
-                    <option value="${mealType.name}">${mealType.name}</option>
+                <c:forEach items="${typeMeals}" var="typeMeal">
+                    <option value="${typeMeal.name}">${typeMeal.name}</option>
                 </c:forEach>
             </datalist>
 

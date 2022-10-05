@@ -37,19 +37,18 @@ public class Recipe {
     private String cookType;
     @OneToMany(mappedBy = "recipeByIdRecipe")
     private Collection<IngredientRecipe> ingredientRecipesById;
-    @ManyToOne
-    @JoinColumn(name = "id_step", referencedColumnName = "id")
-    private Step stepByIdStep;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_type_meal", referencedColumnName = "id")
     private TypeMeal typeMealByIdTypeMeal;
     @OneToMany(mappedBy = "recipeByIdRecipe")
     private Collection<RecipeUser> recipeUsersById;
+    @OneToMany(mappedBy = "recipeByIdRecipe")
+    private Collection<Step> stepsById;
 
     public Recipe() {
     }
 
-    public Recipe(String name, Integer difficulty, String pictureUrl, Integer cookTime, Integer preparation, Integer restTime, Integer expanse, String cookType) {
+    public Recipe(String name, Integer difficulty, String pictureUrl, Integer cookTime, Integer preparation, Integer restTime, Integer expanse, String cookType, TypeMeal typeMeal) {
         this.name = name;
         this.difficulty = difficulty;
         this.pictureUrl = pictureUrl;
@@ -58,6 +57,7 @@ public class Recipe {
         this.restTime = restTime;
         this.expanse = expanse;
         this.cookType = cookType;
+        this.typeMealByIdTypeMeal = typeMeal;
     }
 
     public long getId() {
@@ -153,14 +153,6 @@ public class Recipe {
         this.ingredientRecipesById = ingredientRecipesById;
     }
 
-    public Step getStepByIdStep() {
-        return stepByIdStep;
-    }
-
-    public void setStepByIdStep(Step stepByIdStep) {
-        this.stepByIdStep = stepByIdStep;
-    }
-
     public TypeMeal getTypeMealByIdTypeMeal() {
         return typeMealByIdTypeMeal;
     }
@@ -175,5 +167,13 @@ public class Recipe {
 
     public void setRecipeUsersById(Collection<RecipeUser> recipeUsersById) {
         this.recipeUsersById = recipeUsersById;
+    }
+
+    public Collection<Step> getStepsById() {
+        return stepsById;
+    }
+
+    public void setStepsById(Collection<Step> stepsById) {
+        this.stepsById = stepsById;
     }
 }
