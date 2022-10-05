@@ -72,6 +72,7 @@
                     <input hidden type="text" name="recipe-id" value="${recipe.id}">
                     <button type="submit">I cooked this !</button>
                 </form>
+                <c:if test="${not empty sessionScope}"><button class="btn btn-danger mt-2"><a class="text-decoration-none text-white" href="${pageContext.request.contextPath}/auth/delete-recipe?id=${recipe.id}">Delete</a></button></c:if>
             </div>
         </div>
     </div>

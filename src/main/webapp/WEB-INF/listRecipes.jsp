@@ -34,6 +34,7 @@
                 <div class="card-body">
                     <h5 class="card-title">${recipe.name}</h5>
                     <a href="${pageContext.request.contextPath}/auth/recipe-details?id=${recipe.id}">Afficher la recette</a>
+                    <c:if test="${not empty sessionScope}"><button class="btn btn-danger mt-2"><a class="text-decoration-none text-white" href="${pageContext.request.contextPath}/auth/delete-recipe?id=${recipe.id}">Delete</a></button></c:if>
                 </div>
             </div>
         </c:forEach>
