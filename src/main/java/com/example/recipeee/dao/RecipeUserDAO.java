@@ -1,4 +1,5 @@
 package com.example.recipeee.dao;
+import com.example.recipeee.dao.entity.Recipe;
 import com.example.recipeee.dao.entity.RecipeUser;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface RecipeUserDAO {
     void update(long id, RecipeUser updatedRecipeUser);
 
     public Long findID (long recipeID);
+
+    public List<Recipe> findAllSixDays();
 }
