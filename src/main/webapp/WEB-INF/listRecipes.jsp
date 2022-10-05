@@ -36,6 +36,5 @@
     </form>
     </div>
 </div>
-<script src="https://kit.fontawesome.com/a2dedf79e7.js" crossorigin="anonymous"></script>
 </body>
 </html>
